@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="ChachaDelice.Views.CommandPage">
+    
+    <Grid RowDefinitions="300,150,*,Auto">
+        <Grid BackgroundColor="Red">
+            <Image Source="{Binding SelectedFood.ImageUrl}" Aspect="AspectFill" HeightRequest="300"/>
+            <Label Text="{Binding SelectedFood.Name}" VerticalOptions="End" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold"/>
+        </Grid>
+        <pancake:PancakeView CornerRadius="30,30,0,0" Grid.Row="1" TranslationY="0"  Background="Green">
+            <StackLayout   VerticalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                    <Label Text="{Binding SelectedFood.ProductID}" HorizontalOptions="Start" Margin="10,5" />
+                    <Label Text="{Binding SelectedFood.CategorieID}" HorizontalOptions="Start" Margin="10,5" />
+                    <Label Text="{Binding SelectedFood.Rating}" HorizontalOptions="Start" Margin="10,5" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="Center" BackgroundColor="Red" >
+                    <Button Text="-" HorizontalOptions="Center"  VerticalOptions="Center"  Command="{Binding RetraitItem}"/>
+                    <Entry Placeholder="0" Text="{Binding NombreDeCommand}" WidthRequest="50" HorizontalTextAlignment="Center" />
+                    <Button Text="+" HorizontalOptions="Center" VerticalOptions="Center" Command="{Binding AjoutItem}"/>
+                </StackLayout>
+            </StackLayout>
+
+
+        </pancake:PancakeView>
+        <StackLayout    Grid.Row="2" >
+            <StackLayout Orientation="Vertical" >
+                <Button x:Name="ajouutListAchat" Text="Ajouter à la boite d'achat" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding AjoutAchat}" />
+                <Button x:Name="VoirList" Text="Voir la liste d'achat" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding VoirList}"/>
+            </StackLayout>
+            <Label Text="Appuyer ici pour choisir votre adresse de livraison" VerticalOptions="Center" HorizontalOptions="Center"  />
+            <Button x:Name="MapsBut" Text="MAPS" VerticalOptions="Center" HorizontalOptions="Center" Clicked="MapsBut_Clicked"/>
+          
+        </StackLayout>
+        <Frame  x:Name="retourMenuPrincipal"  CornerRadius="15" HeightRequest="30" Grid.Row="3" Margin="20" >
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Frame.GestureRecognizers>
+            <Label Text="Retourner au menu principale" VerticalOptions="Center" HorizontalOptions="Center"  />
+        </Frame>
+    </Grid>
+</ContentPage>
